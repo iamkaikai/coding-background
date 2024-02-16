@@ -1,53 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Random Code Snippets</title>
-    <link rel="stylesheet" href="./style.css" />
-    <script>
-        async function fetchAndDisplaySnippet() {
-            const response = await fetch('/get_snippet');
-            const data = await response.json();
-
-            const snippet = data.snippet;
-            console.log(snippet);
-            const container = document.getElementById('snippetContainer');
-
-            let index = 0;
-            function addCharacter() {
-                if (index < snippet.length) {
-                    container.innerHTML += escapeHTML(snippet[index]);
-                    index++;
-                    scrollToBottom();
-                    setTimeout(addCharacter, 60); // Next character after 100ms
-                }
-            }
-
-            addCharacter(); // Start adding characters
-        }
-
-        function scrollToBottom() {
-            var container = document.getElementById('snippetContainer');
-            window.scrollTo(0, container.scrollHeight);
-            // console.log(container.scrollHeight);
-            // console.log('scrolling');
-        }
-
-        function escapeHTML(text) {
-            return text
-                .replace(/&/g, '&amp;') // First replace the ampersand to avoid over-escaping
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
-
-        window.onload = fetchAndDisplaySnippet;
-        setInterval(fetchAndDisplaySnippet, 10000);
-    </script>
-</head>
-<body>
-    <h1>Random Code Snippets</h1>
-    <pre id="snippetContainer"></pre>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Random Code Snippets</title>
+        <link rel="stylesheet" href="./style.css" />
+        <!-- <script src="./printCode.js"></script> -->
+        <script src="./slideshow.js"></script>
+    </head>
+    <body>
+        <pre id="snippetContainer"></pre>
+    </body>
 </html>

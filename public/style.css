@@ -4,4 +4,40 @@ body {
 #snippetContainer {
   color: #4cff4c;
   font-size: 1.3rem;
-  line-height: 2rem; }
+  line-height: 2rem; 
+}
+.slideIMG{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+}
+.fade-in {
+  animation: fadeIn ease-in-out 30s;
+  -webkit-animation: fadeIn ease-in-out 30s;
+  -moz-animation: fadeIn ease-in-out 30s;
+  -o-animation: fadeIn ease-in-out 30s;
+  -ms-animation: fadeIn ease-in-out 30s; 
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  85% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(30px);
+  } 
+}
