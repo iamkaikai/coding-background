@@ -6,9 +6,11 @@ async function loadSrc() {
     const data = await response.json();
     const items = data.images;
     const container = document.getElementById('snippetContainer');
+    console.log('container: ', container);
     items.forEach(item => {
         let element;
         if (/\.(mp4|mov|m4v|mpg|m4v|wmv|webm|ogg)$/i.test(item)) {
+            console.log('enter if');
             element = document.createElement('video');
             element.src = `src/${item}`;
             element.className = 'slideIMG';
@@ -16,6 +18,7 @@ async function loadSrc() {
             element.autoplay = true;
             element.play();
         } else {
+            console.log('enter else');
             element = document.createElement('img');
             element.src = `src/${item}`;
             element.className = 'slideIMG';
@@ -29,14 +32,17 @@ async function playCarousel() {
     
     if(cur_idx >= media.length) {
         cur_idx = 0;
+        document.getElementById('snippetContainer').innerHTML = '';
     }
     
     media[cur_idx].classList.add('fade-in');
-    setTimeout(() => {
-        media[cur_idx].classList.remove('fade-in');
-        cur_idx++;
-        playCarousel();
-    }, 30000);    
+    if(media[cur_idx].element == 'img'){
+        setTimeout(() => {
+            media[cur_idx].classList.remove('fade-in');
+            cur_idx++;
+            playCarousel();
+        }, 4000);   
+    } 
 }
 
 window.onload = loadSrc();
